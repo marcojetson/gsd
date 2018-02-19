@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Moment from 'moment';
 
 export default class History extends Component {
@@ -12,9 +12,9 @@ export default class History extends Component {
     }
 
     return this.props.history.map((task, i) => (
-      <View key={i}>
-        <Text>{task.title}</Text>
-        <Text>{Moment(task.finished).format('YYYY-M-D H:m')}</Text>
+      <View key={i} style={styles.container}>
+        <Text style={styles.historyText}>{task.title}</Text>
+        <Text style={styles.historyText}>{Moment(task.finished).format('D-MM-YYYY H:m')}</Text>
       </View>
     ));
   }
@@ -25,3 +25,13 @@ export default class History extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 10
+  },
+  historyText: {
+    fontSize: 15,
+    color: '#000'
+  }
+})
